@@ -133,6 +133,22 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
       setRegistro([...presupuestosRegistro]);
       setResult(newResult);
       setStep("result");
+
+      // Enviar a Google Sheets via Make webhook
+      fetch("https://hook.us2.make.com/mwn625904fixm73advffmyi4yjjscbnr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fecha: newResult.fecha,
+          nombre: newResult.nombre,
+          email: newResult.email,
+          telefono: newResult.telefono,
+          duracion: newResult.duracion,
+          total: newResult.total.toLocaleString("es-PY") + " Gs",
+          terapias: newResult.terapias.map(t => `${t.nombre} ×${t.sesiones}`).join(", "),
+        }),
+      }).catch(() => {});
+
     } catch (e) {
       setError("Ocurrió un error al generar el presupuesto. Por favor intenta de nuevo.");
       setStep("form");
@@ -198,6 +214,7 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
               <div className="bg-white rounded-2xl border border-stone-200 p-10 text-center">
                 <p className="text-4xl mb-3">📋</p>
                 <p className="text-stone-500 text-sm">Aún no se generaron presupuestos en esta sesión.</p>
+                <p className="text-stone-400 text-xs mt-2">Los presupuestos de todos los usuarios se guardan en tu Google Sheets.</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -250,6 +267,13 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
                 </div>
               </div>
             )}
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-2xl p-4 flex items-center gap-3">
+              <span className="text-2xl">📊</span>
+              <div>
+                <p className="text-blue-800 font-semibold text-sm">Registro completo en Google Sheets</p>
+                <p className="text-blue-600 text-xs mt-0.5">Todos los presupuestos de todos los usuarios se guardan automáticamente en tu hoja de cálculo.</p>
+              </div>
+            </div>
           </div>
         )}
 
