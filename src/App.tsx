@@ -435,6 +435,10 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
                 className="flex-1 py-3 bg-teal-700 text-white font-semibold rounded-xl hover:bg-teal-800 transition text-sm flex items-center justify-center gap-2">
                 📋 Ver resumen para compartir
               </button>
+              <button onClick={() => window.print()}
+                className="flex-1 py-3 bg-stone-700 text-white font-semibold rounded-xl hover:bg-stone-800 transition text-sm flex items-center justify-center gap-2">
+                🖨️ Guardar como PDF
+              </button>
               <button onClick={handleReset} className="flex-1 py-3 bg-stone-100 text-stone-700 font-semibold rounded-xl hover:bg-stone-200 transition text-sm">
                 ← Nueva Solicitud
               </button>
