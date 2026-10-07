@@ -134,8 +134,7 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
       setResult(newResult);
       setStep("result");
 
-      // Enviar a Google Sheets via Make webhook
-      fetch("https://hook.us2.make.com/mwn625904fixm73advffmyi4yjjscbnr", {
+      fetch("https://hook.us2.make.com/faouykqs46cmdollfhiqu1k4k25dfmgs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -271,7 +270,7 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
               <span className="text-2xl">📊</span>
               <div>
                 <p className="text-blue-800 font-semibold text-sm">Registro completo en Google Sheets</p>
-                <p className="text-blue-600 text-xs mt-0.5">Todos los presupuestos de todos los usuarios se guardan automáticamente en tu hoja de cálculo.</p>
+                <p className="text-blue-600 text-xs mt-0.5">Todos los presupuestos se guardan automáticamente en tu hoja de cálculo.</p>
               </div>
             </div>
           </div>
