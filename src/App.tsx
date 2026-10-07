@@ -136,6 +136,7 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
 
       fetch("https://hook.us2.make.com/faouykqs46cmdollfhiqu1k4k25dfmgs", {
         method: "POST",
+        "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fecha: newResult.fecha,
