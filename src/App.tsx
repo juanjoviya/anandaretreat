@@ -134,19 +134,18 @@ Para alojamiento: 400.000 Gs por noche (fijo). Para alimentación: 180.000 Gs po
       setResult(newResult);
       setStep("result");
 
+      const params = new URLSearchParams();
+      params.append("fecha", newResult.fecha);
+      params.append("nombre", newResult.nombre);
+      params.append("email", newResult.email);
+      params.append("telefono", newResult.telefono);
+      params.append("duracion", newResult.duracion);
+      params.append("total", newResult.total.toLocaleString("es-PY") + " Gs");
+      params.append("terapias", newResult.terapias.map(t => `${t.nombre} ×${t.sesiones}`).join(", "));
       fetch("https://hook.us2.make.com/faouykqs46cmdollfhiqu1k4k25dfmgs", {
         method: "POST",
-        "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fecha: newResult.fecha,
-          nombre: newResult.nombre,
-          email: newResult.email,
-          telefono: newResult.telefono,
-          duracion: newResult.duracion,
-          total: newResult.total.toLocaleString("es-PY") + " Gs",
-          terapias: newResult.terapias.map(t => `${t.nombre} ×${t.sesiones}`).join(", "),
-        }),
+        mode: "no-cors",
+        body: params,
       }).catch(() => {});
 
     } catch (e) {
